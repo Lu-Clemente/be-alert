@@ -9,7 +9,12 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "ts:check": "tsc",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "build:prev": "eas build --profile preview",
+    "build:dev": "eas build --profile development",
+    "build:prod": "eas build --profile production",
+    "build:android": "eas build --profile preview",
+    "build:ios": "eas build --profile <profile-name> --platform=ios"
   },
   "jest": {
     "preset": "jest-expo"
