@@ -14,7 +14,9 @@
     "build:dev": "eas build --profile development",
     "build:prod": "eas build --profile production",
     "build:android": "eas build --profile preview",
-    "build:ios": "eas build --profile <profile-name> --platform=ios"
+    "build:ios": "eas build --profile <profile-name> --platform=ios",
+    "update:prev": "eas update --branch preview",
+    "update:prod": "eas update --branch production"
   },
   "jest": {
     "preset": "jest-expo"
