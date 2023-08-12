@@ -1,0 +1,58 @@
+name: preview
+on:
+  push:
+    branches:
+      - update
+
+jobs:
+  update:
+    name: EAS Update Production
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: 'refs/pull/*'  # Checkout the pull request refs
+
+      - name: Check if merged to main
+        id: check-merge
+        run: |
+          if [ "$GITHUB_REF" == "refs/pull/${{ github.event.number }}/merge" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
+            echo "Code merged from update to main"
+            echo "::set-output name=merge-status::true"
+          else
+            echo "Code not merged from update to main"
+            echo "::set-output name=merge-status::false"
+          fi
+
+      - name: Setup Node
+        if: steps.check-merge.outputs.merge-status == 'true'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+
+      - name: Setup EAS
+        if: steps.check-merge.outputs.merge-status == 'true'
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        if: steps.check-merge.outputs.merge-status == 'true'
+        run: yarn install
+
+      - name: Publish update
+        if: steps.check-merge.outputs.merge-status == 'true'
+        run: eas update:republish --branch production

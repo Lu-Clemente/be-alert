@@ -1,0 +1,31 @@
+{
+  "cli": {
+    "version": ">= 4.1.2"
+  },
+  "build": {
+    "production": {
+      "node": "16.13.0",
+      "env": {
+        "API_URL": "https://company.com/api"
+      },
+      "channel": "production"
+    },
+    "preview": {
+      "extends": "production",
+      "distribution": "internal",
+      "env": {
+        "API_URL": "https://staging.company.com/api"
+      },
+      "channel": "preview"
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development"
+    }
+  },
+  "submit": {
+    "production": {},
+    "preview": {}
+  }
+}
