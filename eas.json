@@ -7,18 +7,21 @@
       "node": "16.13.0",
       "env": {
         "API_URL": "https://company.com/api"
-      }
+      },
+      "channel": "production"
     },
     "preview": {
       "extends": "production",
       "distribution": "internal",
       "env": {
         "API_URL": "https://staging.company.com/api"
-      }
+      },
+      "channel": "preview"
     },
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "development"
     }
   },
   "submit": {
