@@ -55,4 +55,4 @@ jobs:
 
       - name: Publish update
         if: steps.check-merge.outputs.merge-status == 'true'
-        run: eas update --branch production
+        run: eas update:republish --branch production
