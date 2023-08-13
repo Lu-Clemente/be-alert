@@ -27,7 +27,7 @@ jobs:
       - name: Check if merged to main
         id: check-merge
         run: |
-          if [ "${{ github.event.action }}" == "synchronize" ] && [ "${{ github.event.pull_request.base.ref }}" == "master" ]; then
+          if [ "${{ github.event.action }}" == "synchronize" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
             echo "Code merged from update to main"
             echo "::set-output name=merge-status::true"
           else
