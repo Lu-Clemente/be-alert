@@ -21,7 +21,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Testing Expo EAS Update 2</Text>
+      <Text>Testing Expo EAS Update and Github Actions</Text>
       <Button title="Fetch update" onPress={onFetchUpdateAsync} />
     </View>
   );
