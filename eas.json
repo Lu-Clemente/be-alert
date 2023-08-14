@@ -8,7 +8,10 @@
       "env": {
         "API_URL": "https://company.com/api"
       },
-      "channel": "production"
+      "channel": "production",
+      "android": {
+        "buildType": "apk"
+      }
     },
     "preview": {
       "extends": "production",
