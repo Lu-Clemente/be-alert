@@ -16,14 +16,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.luclemente.bealert"
+      "bundleIdentifier": "com.luclemente.bealert",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.luclemente.bealert"
+      "package": "com.luclemente.bealert",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

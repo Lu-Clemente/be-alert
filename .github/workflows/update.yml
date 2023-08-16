@@ -55,4 +55,7 @@ jobs:
 
       - name: Publish update
         if: steps.check-merge.outputs.merge-status == 'true'
-        run: eas update:republish --group ${{ secrets.EXPO_GROUP_ID }} --message "Production Update"
+        run: | 
+          APP_VERSION=$(exp --raw --config app.json --show-version)
+
+          eas update --branch production --message "Update v.$APP_VERSION"
