@@ -21,7 +21,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.title}>Testing Expo EAS Update</Text>
+      <Text>Github Actions Workflow</Text>
       <Button title="Fetch update" onPress={onFetchUpdateAsync} />
     </View>
   );
@@ -34,4 +35,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    fontSize: 20,
+    color: '#1e811b',
+    marginBottom: 10
+  }
 });
