@@ -2,6 +2,7 @@
   "expo": {
     "name": "be-alert",
     "slug": "be-alert",
+    "scheme": "be-alert",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
