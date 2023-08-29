@@ -37,7 +37,8 @@
       }
     },
     "experiments": {
-      "tsconfigPaths": true
+      "tsconfigPaths": true,
+      "typedRoutes": true
     },
     "runtimeVersion": {
       "policy": "appVersion"
