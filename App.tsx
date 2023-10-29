@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import * as Updates from 'expo-updates';
+import { StatusBar } from 'expo-status-bar'
+import * as Updates from 'expo-updates'
+import { Button, StyleSheet, Text, View } from 'react-native'
 
 export default function App() {
   async function onFetchUpdateAsync() {
     try {
-      const update = await Updates.checkForUpdateAsync();
+      const update = await Updates.checkForUpdateAsync()
 
       if (update.isAvailable) {
-        await Updates.fetchUpdateAsync();
-        await Updates.reloadAsync();
+        await Updates.fetchUpdateAsync()
+        await Updates.reloadAsync()
       } else {
-        console.log("No updates available")
+        console.log('No updates available')
       }
     } catch (error) {
-      alert(`Error fetching latest Expo update: ${error}`);
+      alert(`Error fetching latest Expo update: ${error}`)
     }
   }
 
@@ -25,7 +25,7 @@ export default function App() {
       <Text>Github Actions Workflow</Text>
       <Button title="Fetch update" onPress={onFetchUpdateAsync} />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   title: {
     fontSize: 20,
     color: '#1e811b',
     marginBottom: 10
   }
-});
+})

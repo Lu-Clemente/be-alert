@@ -1,36 +1,36 @@
-import React, { useEffect } from "react";
-import { Slot, useRouter, useSegments } from "expo-router";
-import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { Slot, useRouter, useSegments } from 'expo-router'
+import React, { useEffect } from 'react'
+import { AuthProvider, useAuth } from '@/contexts/AuthContext'
 
 const InitialLayout = () => {
-  const segments = useSegments();
-  const router = useRouter();
-  const { token } = useAuth();
+  const segments = useSegments()
+  const router = useRouter()
+  const { token } = useAuth()
 
   const choosePublicOrPrivatePaths = () => {
-    const inTabsGroup = segments[0] === "(private)";
-    const inRegisterScreen = segments[1] === "registerScreen";
+    const inTabsGroup = segments[0] === '(private)'
+    const inRegisterScreen = segments[1] === 'registerScreen'
 
     if (token && !inTabsGroup && !inRegisterScreen) {
-      router.replace("/(private)/homeScreen");
+      router.replace('/(private)/homeScreen')
     } else if (!token) {
-      router.replace("/(public)/loginScreen");
+      router.replace('/(public)/loginScreen')
     }
-  };
+  }
 
   useEffect(() => {
-    choosePublicOrPrivatePaths();
-  }, [token]);
+    choosePublicOrPrivatePaths()
+  }, [token])
 
-  return <Slot />;
-};
+  return <Slot />
+}
 
 const RootLayout = () => {
   return (
     <AuthProvider>
       <InitialLayout />
     </AuthProvider>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout
