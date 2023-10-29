@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import * as Updates from 'expo-updates';
-import { useEffect } from 'react';
 
 export default function App() {
   async function onFetchUpdateAsync() {
@@ -18,12 +17,6 @@ export default function App() {
       alert(`Error fetching latest Expo update: ${error}`);
     }
   }
-
-  useEffect(() => {
-    console.log("Passed here")
-  }, [])
-
-  console.log("Passed here")
 
   return (
     <View style={styles.container}>

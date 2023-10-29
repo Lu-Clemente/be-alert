@@ -12,10 +12,8 @@ const InitialLayout = () => {
     const inRegisterScreen = segments[1] === "registerScreen";
 
     if (token && !inTabsGroup && !inRegisterScreen) {
-      console.log("PRIVATE");
       router.replace("/(private)/homeScreen");
     } else if (!token) {
-      console.log("PUBLIC");
       router.replace("/(public)/loginScreen");
     }
   };
