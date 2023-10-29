@@ -1,78 +1,82 @@
-import React, { createContext, useContext, useState } from "react";
-import * as SecureStore from "expo-secure-store";
-import { AuthService } from "../services/auth/AuthService";
-import { AuthContextProps, AuthContextValue, AuthResponse } from "@/types/auth";
+import * as SecureStore from 'expo-secure-store'
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import {
+  IAuthContextProps,
+  IAuthContextValue,
+  IAuthResponse
+} from '@/types/auth'
+import { AuthService } from '../services/auth/AuthService'
 
-const AuthContext = createContext<AuthContextValue | undefined>(undefined);
+const AuthContext = createContext<IAuthContextValue | undefined>(undefined)
 
-export const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
-  const [token, setToken] = useState<string | null>(null);
+export const AuthProvider: React.FC<IAuthContextProps> = ({ children }) => {
+  const [token, setToken] = useState<string | null>(null)
 
   const setSecureToken = async (value: string) => {
-    await SecureStore.setItemAsync("token", value);
-    setToken(value);
-  };
+    await SecureStore.setItemAsync('token', value)
+    setToken(value)
+  }
 
   const getSecureToken = async () => {
-    const value = await SecureStore.getItemAsync("token");
+    const value = await SecureStore.getItemAsync('token')
     if (value) {
-      setToken(value);
+      setToken(value)
     }
-  };
+  }
 
   const removeSecureToken = async () => {
-    await SecureStore.deleteItemAsync("token");
-    setToken(null);
-  };
+    await SecureStore.deleteItemAsync('token')
+    setToken(null)
+  }
 
   const login = async (email: string, password: string) => {
     try {
-      const response: AuthResponse = await AuthService.login(email, password);
-      await setSecureToken(response.token);
+      const response: IAuthResponse = await AuthService.login(email, password)
+      await setSecureToken(response.token)
     } catch (error) {
       // Handle this error better
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const logout = async () => {
     try {
-      await removeSecureToken();
+      await removeSecureToken()
     } catch (error) {
-        // Handle this error better
-      console.log(error);
+      // Handle this error better
+      console.log(error)
     }
-  };
+  }
 
   const register = async (email: string, password: string) => {
     try {
-      const response: AuthResponse = await AuthService.register(
+      const response: IAuthResponse = await AuthService.register(
         email,
         password
-      );
-      await setSecureToken(response.token);
+      )
+      await setSecureToken(response.token)
     } catch (error) {
       // Handle this error better
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   // On component mount, try to retrieve token from secure storage
-  React.useEffect(() => {
-    getSecureToken();
-  }, []);
+  useEffect(() => {
+    getSecureToken()
+  }, [])
 
   return (
     <AuthContext.Provider value={{ token, login, logout, register }}>
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
+}
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider')
   }
-  return context;
-};
+  return context
+}

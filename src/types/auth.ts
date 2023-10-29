@@ -1,16 +1,16 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
-export interface AuthResponse {
-  token: string;
+export interface IAuthResponse {
+  token: string
 }
 
-export interface AuthContextProps {
-  children: ReactNode;
+export interface IAuthContextProps {
+  children: ReactNode
 }
 
-export interface AuthContextValue {
-  token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+export interface IAuthContextValue {
+  token: string | null
+  login: (email: string, password: string) => Promise<void>
+  logout: () => Promise<void>
+  register: (email: string, password: string) => Promise<void>
 }

@@ -1,16 +1,13 @@
-import { AuthResponse } from '@/types/auth';
-import axios from 'axios';
-
-const API_BASE_URL = 'http://your-api-url.com'; // Replace with your actual API URL
+import { IAuthResponse } from '@/types/auth'
 
 export const AuthService = {
-  register: async (email: string, password: string): Promise<AuthResponse> => {
+  register: async (email: string, password: string): Promise<IAuthResponse> => {
     // Mocked response for now
-    return { token: 'mockedToken123' };
+    return { token: 'mockedToken123' }
   },
-  
-  login: async (email: string, password: string): Promise<AuthResponse> => {
+
+  login: async (email: string, password: string): Promise<IAuthResponse> => {
     // Mocked response for now
-    return { token: 'mockedToken456' };
-  },
-};
+    return { token: 'mockedToken456' }
+  }
+}
