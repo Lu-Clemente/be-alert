@@ -11,6 +11,7 @@ const AuthContext = createContext<IAuthContextValue | undefined>(undefined)
 
 export const AuthProvider: React.FC<IAuthContextProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const setSecureToken = async (value: string) => {
     await SecureStore.setItemAsync('token', value)
@@ -30,13 +31,18 @@ export const AuthProvider: React.FC<IAuthContextProps> = ({ children }) => {
   }
 
   const login = async (email: string, password: string) => {
-    try {
-      const response: IAuthResponse = await AuthService.login(email, password)
-      await setSecureToken(response.token)
-    } catch (error) {
-      // Handle this error better
-      console.log(error)
-    }
+    setLoading(true)
+    setTimeout(async () => {
+      try {
+        const response: IAuthResponse = await AuthService.login(email, password)
+        await setSecureToken(response.token)
+      } catch (error) {
+        // Handle this error better
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }, 1500)
   }
 
   const logout = async () => {
@@ -49,16 +55,21 @@ export const AuthProvider: React.FC<IAuthContextProps> = ({ children }) => {
   }
 
   const register = async (email: string, password: string) => {
-    try {
-      const response: IAuthResponse = await AuthService.register(
-        email,
-        password
-      )
-      await setSecureToken(response.token)
-    } catch (error) {
-      // Handle this error better
-      console.log(error)
-    }
+    setLoading(true)
+    setTimeout(async () => {
+      try {
+        const response: IAuthResponse = await AuthService.register(
+          email,
+          password
+        )
+        await setSecureToken(response.token)
+      } catch (error) {
+        // Handle this error better
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+    }, 1500)
   }
 
   // On component mount, try to retrieve token from secure storage
@@ -67,7 +78,7 @@ export const AuthProvider: React.FC<IAuthContextProps> = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, register }}>
+    <AuthContext.Provider value={{ token, loading, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   )
