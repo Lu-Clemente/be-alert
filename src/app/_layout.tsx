@@ -1,23 +1,38 @@
-import { Stack } from "expo-router/stack";
+import React, { useEffect } from "react";
+import { Slot, useRouter, useSegments } from "expo-router";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 
-const StackLayout = () => {
+const InitialLayout = () => {
+  const segments = useSegments();
+  const router = useRouter();
+  const { token } = useAuth();
+
+  const choosePublicOrPrivatePaths = () => {
+    const inTabsGroup = segments[0] === "(private)";
+    const inRegisterScreen = segments[1] === "registerScreen";
+
+    if (token && !inTabsGroup && !inRegisterScreen) {
+      console.log("PRIVATE");
+      router.replace("/(private)/homeScreen");
+    } else if (!token) {
+      console.log("PUBLIC");
+      router.replace("/(public)/loginScreen");
+    }
+  };
+
+  useEffect(() => {
+    choosePublicOrPrivatePaths();
+  }, [token]);
+
+  return <Slot />;
+};
+
+const RootLayout = () => {
   return (
-    <Stack screenOptions={{ headerTitleAlign: "center" }}>
-      <Stack.Screen
-        name="index"
-        options={{
-          headerTitle: "Login",
-        }}
-      />
-      <Stack.Screen
-        name="registerScreen"
-        options={{
-          headerTitle: "Create Account",
-        }}
-      />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <AuthProvider>
+      <InitialLayout />
+    </AuthProvider>
   );
 };
 
-export default StackLayout;
+export default RootLayout;
