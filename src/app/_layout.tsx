@@ -2,6 +2,7 @@ import { Slot, useRouter, useSegments } from 'expo-router'
 import React, { useEffect } from 'react'
 import * as Updates from 'expo-updates'
 import { AuthProvider, useAuth } from '@/contexts/AuthContext'
+import { NotificationsProvider } from '@/contexts/NotificationsContext'
 
 const InitialLayout = () => {
   const segments = useSegments()
@@ -45,9 +46,11 @@ const RootLayout = () => {
   }
 
   return (
-    <AuthProvider>
-      <InitialLayout />
-    </AuthProvider>
+    <NotificationsProvider>
+      <AuthProvider>
+        <InitialLayout />
+      </AuthProvider>
+    </NotificationsProvider>
   )
 }
 
