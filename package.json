@@ -13,8 +13,8 @@
     "build:prev": "eas build --profile preview",
     "build:dev": "eas build --profile development",
     "build:prod": "eas build --profile production",
-    "build:android": "eas build --profile preview",
-    "build:ios": "eas build --profile <profile-name> --platform=ios",
+    "build:android": "eas build --profile preview -p android",
+    "build:ios": "eas build --profile preview -p ios",
     "update:prev": "eas update --branch preview",
     "update:prod": "eas update --branch production",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx .",
@@ -44,6 +44,7 @@
     "react-native-gesture-handler": "^2.12.1",
     "react-native-safe-area-context": "^4.7.1",
     "react-native-screens": "^3.24.0",
+    "react-native-svg": "^14.0.0",
     "styled-components": "^6.0.7",
     "typescript": "^5.1.6"
   },
