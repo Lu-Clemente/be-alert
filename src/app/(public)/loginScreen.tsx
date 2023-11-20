@@ -1,10 +1,8 @@
-import { useRouter } from 'expo-router'
 import React from 'react'
-import { ActivityIndicator, Button, Text, View } from 'react-native'
+import { ActivityIndicator, View, Text, TouchableOpacity } from 'react-native'
 import { useAuth } from '@/contexts/AuthContext'
 
 const LoginScreen = () => {
-  const router = useRouter()
   const email = 'test@mail.com'
   const passwaord = 'senha123'
 
@@ -20,18 +18,24 @@ const LoginScreen = () => {
         <View
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#6C63FF" />
         </View>
       ) : (
         <View
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-          <Text>Login Screen</Text>
-          <Button
-            title="Go to Register"
-            onPress={() => router.push('/registerScreen')}
-          />
-          <Button title="Login" onPress={handleLogin} />
+          <TouchableOpacity
+            onPress={handleLogin}
+            style={{
+              backgroundColor: '#6c63ff',
+              paddingVertical: 6,
+              paddingHorizontal: 10,
+              marginBottom: 40,
+              borderRadius: 6
+            }}
+          >
+            <Text style={{ color: '#fff', fontWeight: '500' }}>Login</Text>
+          </TouchableOpacity>
         </View>
       )}
     </>
