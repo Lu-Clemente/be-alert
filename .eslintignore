@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# Ignore artifacts:
+build
+coverage
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# vs-code
+.vscode
+
+# Env files
+.env
+
+expo-env.d.ts
+# @end expo-cli
+
+# Readme
+README.md
