@@ -34,13 +34,13 @@ This project is configured to sendo push notifications only for Android Devices.
 3 Services was tested:
 
 <p>
- <img align="center" height="520px" src="https://github.com/Lu-Clemente/be-alert/assets/86859665/027f1d0c-f3de-4f3b-bf3f-2fd68529b203">
+ <img align="center" height="520px" src="https://github.com/Lu-Clemente/be-alert/blob/main/assets/preview/Captura3.png">
   <p><b>Expo Push Notification Tool - Via Expo Server</b></p>
   <br><br>
- <img align="center" height="520px" src="https://github.com/Lu-Clemente/be-alert/assets/86859665/b57b2d20-d598-400f-a6fd-39a862cdea14">
+ <img align="center" height="520px" src="https://github.com/Lu-Clemente/be-alert/blob/main/assets/preview/Captura1.png">
   <p><b>FCM (Firebase Cloud Messaging) - Via Firebase Messaging Console</b></p>
   <br><br>
- <img align="center" height="320px" src="https://github.com/Lu-Clemente/be-alert/assets/86859665/82ed886d-2474-47d0-a7a8-bd29dfb7bc14">
+ <img align="center" height="320px" src="https://github.com/Lu-Clemente/be-alert/blob/main/assets/preview/Captura2.png">
   <p><b>FCM (Firebase Cloud Messaging) - Via HTTP2 request to Firebase Server</b></p>
 </p>
 <br>
@@ -48,5 +48,9 @@ This project is configured to sendo push notifications only for Android Devices.
 ## Preview User Side
 This is an app preview showing how the notifications work on a real user's device.
 
+https://github.com/Lu-Clemente/be-alert/assets/86859665/25574dcd-64a7-4f67-8931-e29e1060ca31
 
-https://github.com/Lu-Clemente/be-alert/assets/86859665/5a3641d2-2498-479d-b6c2-55a220143aae
+
+
+
+
